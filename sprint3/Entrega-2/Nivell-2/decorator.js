@@ -1,21 +1,20 @@
-class Decorator {
-    constructor(article) {
-        this.article = article;
-    }
+/* Crea un Decorator en un arxiu que retorni una funció. Aquesta funció efectuarà una conversió de moneda a euros multiplicant pel coeficient de conversió del fitxer adjunt currency_conversions.json en funció de la divisa original. */
 
-    obtenirArticle() {
-        return this.article;
-    }
+// create a function that returns a function that converts the price of an article to EUR
 
-    convertToEuros() {
-        const conversions = require('./currency_conversions.json');
-        const article = this.obtenirArticle();
-        const convertirDivisa = `${article.divisa}_EUR`;
-        const preuConvertit = article.preu * conversions[convertirDivisa];
-        const preuArrodonit = Math.round(preuConvertit * 100) / 100;
-        console.log(`El preu de l'article ${article.nom} en euros és ${preuArrodonit}€`);
-    };
-}
+const decorator = ( article ) => {
+    const conversions = require( './currency_conversions.json' );
+    const convertirDivisa = `${ article.divisa }_EUR`;
+    const preuArrodonit = Math.round( article.preu * conversions[ convertirDivisa ] * 100 ) / 100;
+    return ( () => {
+        return {
+            nom: article.nom,
+            preu: preuArrodonit,
+            divisa: 'EUR'
+        };
+    } )();
+};
 
 
-module.exports = Decorator;
+
+module.exports = decorator;;
