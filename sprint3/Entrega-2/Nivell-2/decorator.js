@@ -1,6 +1,5 @@
 /* Crea un Decorator en un arxiu que retorni una funció. Aquesta funció efectuarà una conversió de moneda a euros multiplicant pel coeficient de conversió del fitxer adjunt currency_conversions.json en funció de la divisa original. */
 
-// create a function that returns a function that converts the price of an article to EUR
 
 const decorator = ( article ) => {
     const conversions = require( './currency_conversions.json' );
@@ -17,4 +16,4 @@ const decorator = ( article ) => {
 
 
 
-module.exports = decorator;;
+module.exports = decorator;
