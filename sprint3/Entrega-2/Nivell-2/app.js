@@ -22,8 +22,6 @@ const article3 = {
 };
 
 
-// use the decorator function to convert the price of the article to EUR
-
 
 const article1Decorated = decorator( article1 );
 const article2Decorated = decorator( article2 );
